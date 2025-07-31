@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Countdown Timer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
+      text-align: center;
+      padding-top: 50px;
+    }
+    #countdown {
+      font-size: 2em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Countdown ke Tahun Baru 2026</h1>
+  <div id="countdown"></div>
+
+  <script>
+    // Tanggal target countdown (1 Januari 2026)
+    const targetDate = new Date("January 1, 2026 00:00:00").getTime();
+
+    const countdown = document.getElementById("countdown");
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        countdown.innerHTML = "Selamat Tahun Baru!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${days} hari ${hours} jam ${minutes} menit ${seconds} detik`;
+    };
+
+    // Update setiap detik
+    setInterval(updateCountdown, 1000);
+    updateCountdown(); // Panggil langsung untuk pertama kali
+  </script>
+</body>
+</html>
